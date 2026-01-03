@@ -6,31 +6,43 @@ public class Atividade2 {
         double[] notas = new double[8];
 
         for (int i = 0; i < 8; i++) {
-            System.out.print("Digite a nota " + (i + 1) + ": ");
-            notas[i] = sc.nextDouble();
+            while (true) {
+                System.out.print("Digite a nota " + (i + 1) + " (0-10): ");
+                String raw = sc.nextLine().trim();
+                double nota;
+                try {
+                    nota = Double.parseDouble(raw.replace(',', '.'));
+                } catch (NumberFormatException e) {
+                    System.out.println("Entrada inválida. Digite um número válido.");
+                    continue;
+                }
+                if (nota < 0 || nota > 10) {
+                    System.out.println("Valor fora do intervalo. Informe 0 a 10.");
+                    continue;
+                }
+                notas[i] = nota;
+                break;
+            }
         }
-
-        double bimestre1 = (notas[0] + notas[1]) / 2.0;
-        double bimestre2 = (notas[2] + notas[3]) / 2.0;
-        double bimestre3 = (notas[4] + notas[5]) / 2.0;
-        double bimestre4 = (notas[6] + notas[7]) / 2.0;
 
-        
-        double semestre1 = (bimestre1 + bimestre2) / 2.0;
-        double semestre2 = (bimestre3 + bimestre4) / 2.0;
+        double b1 = (notas[0] + notas[1]) / 2.0;
+        double b2 = (notas[2] + notas[3]) / 2.0;
+        double b3 = (notas[4] + notas[5]) / 2.0;
+        double b4 = (notas[6] + notas[7]) / 2.0;
 
-        
-        double mediaFinal = (semestre1 + semestre2) / 2.0;
+        double s1 = (b1 + b2) / 2.0;
+        double s2 = (b3 + b4) / 2.0;
+        double mediaFinal = (s1 + s2) / 2.0;
 
-         formatados
-        System.out.println("\n--- Resultados ---");
-        System.out.printf("1º Bimestre: %.2f%n", bimestre1);
-        System.out.printf("2º Bimestre: %.2f%n", bimestre2);
-        System.out.printf("1º Semestre: %.2f%n", semestre1);
+        System.out.println();
+        System.out.println("--- Resultados ---");
+        System.out.printf("1º Bimestre: %.2f%n", b1);
+        System.out.printf("2º Bimestre: %.2f%n", b2);
+        System.out.printf("1º Semestre: %.2f%n", s1);
         System.out.println("-------------------");
-        System.out.printf("3º Bimestre: %.2f%n", bimestre3);
-        System.out.printf("4º Bimestre: %.2f%n", bimestre4);
-        System.out.printf("2º Semestre: %.2f%n", semestre2);
+        System.out.printf("3º Bimestre: %.2f%n", b3);
+        System.out.printf("4º Bimestre: %.2f%n", b4);
+        System.out.printf("2º Semestre: %.2f%n", s2);
         System.out.println("-------------------");
         System.out.printf("Média Final: %.2f%n", mediaFinal);
 
